@@ -1,6 +1,9 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/models/slider_model.dart';
 import 'package:news_app/services/data.dart';
+import 'package:news_app/services/slider_data.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -11,10 +14,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
+  List<SliderModel> sliders = [];
 
   @override
   void initState() {
     categories = getCategories();
+    sliders = getSliders();
     super.initState();
   }
 
@@ -39,6 +44,7 @@ class _HomeState extends State<Home> {
         child: Column(
           children: [
             Container(
+              margin: EdgeInsets.only(left: 10.0),
               height: 70,
               child: ListView.builder(
                   shrinkWrap: true,
@@ -50,12 +56,33 @@ class _HomeState extends State<Home> {
                       categoryName: categories[index].categoryName,
                     );
                   }),
-            )
+            ),
+            CarouselSlider.builder(
+                itemCount: sliders.length,
+                itemBuilder: (context, index, realIndex) {
+                  String? sliderImage = sliders[index].image;
+                  String? sliderName = sliders[index].name;
+                  return buildImage(sliderImage!, index, sliderName!);
+                },
+                options: CarouselOptions(
+                  height: 200,
+                  viewportFraction: 1,
+                  enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                )),
           ],
         ),
       ),
     );
   }
+
+  Widget buildImage(String image, int index, String name) => Container(
+        child: Image.asset(
+          image,
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+        ),
+      );
 }
 
 class CategoryTile extends StatelessWidget {
@@ -81,7 +108,7 @@ class CategoryTile extends StatelessWidget {
             width: 120,
             height: 60,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(12),
               color: Colors.black26,
             ),
             child: Center(
