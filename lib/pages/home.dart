@@ -57,6 +57,9 @@ class _HomeState extends State<Home> {
                     );
                   }),
             ),
+            SizedBox(
+              height: 30.0,
+            ),
             CarouselSlider.builder(
                 itemCount: sliders.length,
                 itemBuilder: (context, index, realIndex) {
@@ -66,7 +69,7 @@ class _HomeState extends State<Home> {
                 },
                 options: CarouselOptions(
                   height: 200,
-                  viewportFraction: 1,
+                  autoPlay: true,
                   enlargeCenterPage: true,
                   enlargeStrategy: CenterPageEnlargeStrategy.height,
                 )),
@@ -77,10 +80,14 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildImage(String image, int index, String name) => Container(
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-          width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.symmetric(horizontal: 5.0),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Image.asset(
+            image,
+            fit: BoxFit.cover,
+            width: MediaQuery.of(context).size.width,
+          ),
         ),
       );
 }
@@ -108,14 +115,15 @@ class CategoryTile extends StatelessWidget {
             width: 120,
             height: 60,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
               color: Colors.black26,
+              borderRadius: BorderRadius.circular(12),
             ),
             child: Center(
               child: Text(
-                "",
+                categoryName,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
