@@ -4,11 +4,6 @@ List<SliderModel> getSliders() {
   List<SliderModel> slider = [];
   SliderModel sliderModel = new SliderModel();
 
-  sliderModel.image = "images/business2.jpg";
-  sliderModel.name = "Bow To The Authority of Silentforce";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
-
   sliderModel.image = "images/entertainment2.jpg";
   sliderModel.name = "Bow To The Authority of Silentforce";
   slider.add(sliderModel);
@@ -20,11 +15,6 @@ List<SliderModel> getSliders() {
   sliderModel = new SliderModel();
 
   sliderModel.image = "images/health2.jpg";
-  sliderModel.name = "Bow To The Authority of Silentforce";
-  slider.add(sliderModel);
-  sliderModel = new SliderModel();
-
-  sliderModel.image = "images/sport2.jpg";
   sliderModel.name = "Bow To The Authority of Silentforce";
   slider.add(sliderModel);
   sliderModel = new SliderModel();
